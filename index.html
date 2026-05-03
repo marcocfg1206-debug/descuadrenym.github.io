@@ -20,7 +20,7 @@
             text-align: center; 
         }
 
-        /* Contenedor principal relativo */
+        /* Contenedor principal relativo para la marca de agua */
         #contenedor-acta {
             width: 215.9mm;
             height: 279.4mm;
@@ -32,13 +32,14 @@
             overflow: hidden;
         }
 
-        /* Nueva clase para la marca de agua compatible con html2pdf */
-        .fondo-marca-agua {
+        #contenedor-acta::before {
+            content: "";
             position: absolute;
             inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            background-image: url('Imagen 1.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
             opacity: 0.16;
             pointer-events: none;
             z-index: 0;
@@ -132,10 +133,7 @@
 </div>
 
 <div id="contenedor-acta">
-    <!-- IMAGEN COLOCADA AQUÍ PARA QUE HTML2PDF LA PUEDA RENDERIZAR SIN PROBLEMAS -->
-    <img src="Imagen 1.png" class="fondo-marca-agua" alt="Marca de Agua">
-
-    <div class="contenido-acta">
+        <div class="contenido-acta">
         <div class="titulo-acta">ACTA DE BOLSAS CON DESCUADRE</div>
 
         <div class="linea-dato">LUGAR Y FECHA: <span class="label-fijo" style="border-bottom:1px solid black; padding:0 8px; min-width:180px;">Quetzaltenango</span> FECHA: <input type="date" id="fecha" class="input-linea input-corto"></div>
@@ -261,33 +259,14 @@
 
     function descargarPDF() {
         const elemento = document.getElementById('contenedor-acta');
-        
-        // Trasladar los valores actuales de los inputs al atributo HTML 
-        const inputs = elemento.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.setAttribute('value', input.value);
-        });
-
-        const selects = elemento.querySelectorAll('select');
-        selects.forEach(select => {
-            Array.from(select.options).forEach(opt => {
-                if (opt.value === select.value) {
-                    opt.setAttribute('selected', 'selected');
-                } else {
-                    opt.removeAttribute('selected');
-                }
-            });
-        });
-
         const configuracion = {
             margin: 0,
             filename: 'ACTA_BOLSAS_TAV.pdf',
             image: { type: 'jpeg', quality: 1 },
-            html2canvas: { scale: 2, useCORS: true, allowTaint: true },
+            html2canvas: { scale: 2, useCORS: true },
             jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
         };
-
-        html2pdf().set(configuracion).from(elemento).save();
+        html2pdf().from(elemento).set(configuracion).save();
     }
 
     function limpiarCampos() {
