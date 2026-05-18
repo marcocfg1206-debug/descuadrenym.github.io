@@ -162,28 +162,74 @@
 
 <div id="contenedor-acta">
         <div class="contenido-acta">
-        <div class="titulo-acta">ACTA DE BOLSAS CON DESCUADRE</div>
 
-        <div class="linea-dato">LUGAR Y FECHA: <span class="label-fijo" style="border-bottom:1px solid black; padding:0 8px; min-width:180px;">Quetzaltenango</span> FECHA: <input type="date" id="fecha" class="input-linea input-corto"></div>
-        <div class="linea-dato">BANCO: <select id="banco" class="input-linea input-banco">
-                <option value="">SELECCIONE</option>
-                <option>BAM</option>
-                <option>G&T</option>
-                <option>FICOHSA</option>
-                <option>INTERBANCO</option>
-                <option>PROMERICA</option>
-                <option>CHN</option>
-                <option>INMOBILIARIO</option>
-            </select> PUNTO: <input type="text" id="punto" class="input-linea input-punto"></div>
-        <div class="linea-dato">CLIENTE (AGENCIA) <input type="text" id="cliente" class="input-linea input-cliente"> No. DE BOLSA: <input type="text" id="num-bolsa" class="input-linea input-numero"></div>
-        <div class="linea-dato">No. DE BOLETA: <input type="text" id="num-boleta" class="input-linea input-boleta"> No. VOUCHER: <input type="text" id="num-voucher" class="input-linea input-voucher"></div>
-        <div class="linea-dato">MONTO: Q ($) <input type="number" id="monto" class="input-linea input-monto-largo" min="0" step="0.01"></div>
 
-        <div style="text-align: center; margin-top: 10px;">INTEGRACION DE EFECTIVO</div>
+        <div class="titulo-acta" style="font-size:2.2em; font-style:italic; font-weight:bold; text-align:center; margin-bottom:30px;">ACTA DE BOLSAS CON DESCUADRE</div>
+
+        <table style="width:100%; border-collapse:collapse; font-size:1.2em; font-weight:bold; margin-bottom:10px;">
+            <tr>
+                <td style="width:100%; padding-bottom:8px;">
+                    <span style="font-weight:bold;">LUGAR Y FECHA:</span>
+                    <span style="font-weight:bold; text-decoration:underline; margin-left:10px;">Quetzaltenango</span>
+                    <span style="margin-left:40px; text-decoration:underline;">
+                        <input type="date" id="fecha" class="input-linea input-corto" style="font-size:1em; font-weight:bold; width:150px; border:none; background:transparent;">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:8px;">BANCO: <span style="display:inline-block; width:40%; border-bottom:1.5px solid #000;"><select id="banco" class="input-linea input-banco" style="width:100%; background:transparent;"></select></span> <span style="margin-left:40px;">PUNTO:</span> <span style="display:inline-block; width:40%; border-bottom:1.5px solid #000;"><input type="text" id="punto" class="input-linea input-punto" style="width:100%;"></span></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:8px;">CLIENTE (AGENCIA) <span style="display:inline-block; width:35%; border-bottom:1.5px solid #000;"><input type="text" id="cliente" class="input-linea input-cliente" style="width:100%;"></span> <span style="margin-left:40px;">No. De Bolsa:</span> <span style="display:inline-block; width:35%; border-bottom:1.5px solid #000;"><input type="text" id="num-bolsa" class="input-linea input-numero" style="width:100%;"></span></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:8px;">No. DE BOLETA: <span style="display:inline-block; width:35%; border-bottom:1.5px solid #000;"><input type="text" id="num-boleta" class="input-linea input-boleta" style="width:100%;"></span> <span style="margin-left:40px;">No. VOUCHER:</span> <span style="display:inline-block; width:35%; border-bottom:1.5px solid #000;"><input type="text" id="num-voucher" class="input-linea input-voucher" style="width:100%;"></span></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:8px;">MONTO: <span style="font-weight:bold;">Q ($)</span> <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="number" id="monto" class="input-linea input-monto-largo" min="0" step="0.01" style="width:100%;"></span></td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 10px; font-size:1.2em; font-weight:bold; text-align:center;">DESCUADRE ENCONTRADO</div>
+        <div style="font-size:1.1em; margin-top:10px;">
+            <div style="margin-bottom:8px;">DIFERENCIA EN EFECTIVO: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="diferencia-efectivo" class="input-linea input-largo" style="width:100%;"></span></div>
+            <div style="margin-bottom:8px;">DIFERENCIA CHEQUES PROPIOS: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="diferencia-cheques-propios" class="input-linea input-largo" style="width:100%;"></span></div>
+            <div style="margin-bottom:8px;">DIFERENCIA CHEQUES AJENOS: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="diferencia-cheques-ajenos" class="input-linea input-largo" style="width:100%;"></span></div>
+            <div style="margin-bottom:8px;">DIFERENCIA BOLETAS - VOUCHERS: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="diferencia-boletas-voucher" class="input-linea input-largo" style="width:100%;"></span></div>
+            <div style="margin-bottom:8px;">No. DE SERIE DE BOLSA NUEVA: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="serie-bolsa-nueva" class="input-linea input-largo" style="width:100%;"></span></div>
+            <div style="margin-bottom:8px;">No. DE BOLETA NUEVA: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"><input type="text" id="boleta-nueva" class="input-linea input-largo" style="width:100%;"></span></div>
+        </div>
+
+        <div style="margin-top: 10px; font-size:1.1em;">
+            <div style="margin-bottom:8px;">Observaciones: <span style="display:inline-block; width:80%; border-bottom:1.5px solid #000;"></span></div>
+            <div style="border-bottom:1.5px solid #000; width:100%; height:22px; margin-bottom:2px;"></div>
+            <div style="border-bottom:1.5px solid #000; width:100%; height:22px; margin-bottom:2px;"></div>
+            <div style="border-bottom:1.5px solid #000; width:100%; height:22px; margin-bottom:2px;"></div>
+            <div style="border-bottom:1.5px solid #000; width:100%; height:22px; margin-bottom:2px;"></div>
+        </div>
+
+        <div style="margin-top: 10px; font-size:1em;">
+            Por este medio certifico que los datos anotados en la presente son reales y verídicos por haber tenido presencia e involucramiento en el proceso de cuadre contabilizando todo el efectivo.
+        </div>
+
+        <div style="margin-top: 30px; width:100%; display:flex; justify-content:space-between;">
+            <div style="width:48%; text-align:left;">
+                <div style="border-bottom:1.5px solid #000; width:100%; height:22px;"></div>
+                <div style="font-style:italic; font-size:1em;">NOMBRE, FIRMA Y SELLO DEL CAJERO</div>
+                <div style="margin-top:8px; font-style:italic;">MODULO <span style="border-bottom:1.5px solid #000; display:inline-block; width:80px;"></span></div>
+            </div>
+            <div style="width:48%; text-align:left;">
+                <div style="border-bottom:1.5px solid #000; width:100%; height:22px;"></div>
+                <div style="font-style:italic; font-size:1em;">NOMBRE, FIRMA Y SELLO COORDINADOR</div>
+                <div style="margin-top:8px; font-style:italic;">HORA <span style="border-bottom:1.5px solid #000; display:inline-block; width:120px;"></span></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px; font-weight:bold;">INTEGRACION DE EFECTIVO</div>
 
         <div class="cuadro-integracion">
             <div class="columna-valores">
-                <div>BILLETES</div>
+                <div style="font-weight:bold;">BILLETES</div>
                 <div class="fila-dinero">Q 1.00: <input type="number" min="0" step="0.01" class="input-monto billete calc-input"></div>
                 <div class="fila-dinero">Q 5.00: <input type="number" min="0" step="0.01" class="input-monto billete calc-input"></div>
                 <div class="fila-dinero">Q 10.00: <input type="number" min="0" step="0.01" class="input-monto billete calc-input"></div>
@@ -193,7 +239,7 @@
                 <div class="fila-dinero">Q 200.00: <input type="number" min="0" step="0.01" class="input-monto billete calc-input"></div>
             </div>
             <div class="columna-valores">
-                <div>MONEDAS</div>
+                <div style="font-weight:bold;">MONEDAS</div>
                 <div class="fila-dinero">Q 0.01: <input type="number" min="0" step="0.01" class="input-monto moneda calc-input"></div>
                 <div class="fila-dinero">Q 0.05: <input type="number" min="0" step="0.01" class="input-monto moneda calc-input"></div>
                 <div class="fila-dinero">Q 0.10: <input type="number" min="0" step="0.01" class="input-monto moneda calc-input"></div>
@@ -208,12 +254,12 @@
             <div class="linea-dato">SUB TOTALES EFECTIVO Q: <input type="text" id="subtotal-billetes" class="input-linea input-sub" readonly> Q: <input type="text" id="subtotal-monedas" class="input-linea input-sub" readonly></div>
             <div class="linea-dato">TOTAL CHEQUES PROPIOS: <input type="number" id="cheques-propios" class="input-linea calc-input input-largo" min="0" step="0.01"></div>
             <div class="linea-dato">TOTAL CHEQUES AJENOS: <input type="number" id="cheques-ajenos" class="input-linea calc-input input-largo" min="0" step="0.01"></div>
-            <div class="linea-dato">TOTAL GENERAL: Q <input type="text" id="total-general" class="input-linea input-largo" readonly></div>
-            <div class="linea-dato">DIFERENCIA: Q <input type="text" id="diferencia" class="input-linea input-largo" readonly></div>
-            <div class="linea-dato">TOTAL VERIFICADO: Q <input type="text" id="total-verificado" class="input-linea input-largo" readonly></div>
+            <div class="linea-dato">TOTAL GENERAL: <span style="font-weight:bold;">Q</span> <input type="text" id="total-general" class="input-linea input-largo" readonly></div>
+            <div class="linea-dato">DIFERENCIA: <span style="font-weight:bold;">Q</span> <input type="text" id="diferencia" class="input-linea input-largo" readonly></div>
+            <div class="linea-dato">TOTAL VERIFICADO: <span style="font-weight:bold;">Q</span> <input type="text" id="total-verificado" class="input-linea input-largo" readonly></div>
         </div>
 
-        <div style="text-align: center; margin-top: 10px;">DESCUADRE ENCONTRADO</div>
+        <div style="text-align: center; margin-top: 10px; font-weight:bold;">DESCUADRE ENCONTRADO</div>
         <div class="linea-dato">DIFERENCIA EN EFECTIVO: <input type="text" id="diferencia-efectivo" class="input-linea input-largo" readonly></div>
         <div class="linea-dato">DIFERENCIA CHEQUES PROPIOS: <input type="text" id="diferencia-cheques-propios" class="input-linea input-largo" readonly></div>
         <div class="linea-dato">DIFERENCIA CHEQUES AJENOS: <input type="text" id="diferencia-cheques-ajenos" class="input-linea input-largo" readonly></div>
@@ -230,18 +276,22 @@
             <div class="linea-blanca"></div>
         </div>
 
-        <div class="seccion-firmas">
-            <div class="espacio-firma">NOMBRE, FIRMA Y SELLO DEL CAJERO</div>
-            <div class="espacio-firma">NOMBRE, FIRMA Y SELLO COORDINADOR</div>
+        <div style="margin-top: 10px; font-size:10pt;">
+            Por este medio certifico que los datos anotados en la presente son reales y verídicos por haber tenido presencia e involucramiento en el proceso de cuadre contabilizando todo el efectivo.
         </div>
 
-        <div class="info-pie">
-            <div>MODULO <input type="text" style="border:none; border-bottom:1px solid black; width:100px; font-weight:bold;"></div>
-            <div>HORA <input type="text" style="border:none; border-bottom:1px solid black; width:100px; font-weight:bold;"></div>
+        <div class="seccion-firmas" style="margin-top: 30px;">
+            <div class="espacio-firma">
+                NOMBRE, FIRMA Y SELLO DEL CAJERO<br>
+                MODULO <input type="text" style="border:none; border-bottom:1px solid black; width:100px; font-weight:bold;">
+            </div>
+            <div class="espacio-firma">
+                NOMBRE, FIRMA Y SELLO COORDINADOR<br>
+                HORA <input type="text" style="border:none; border-bottom:1px solid black; width:100px; font-weight:bold;">
+            </div>
         </div>
     </div>
 </div>
-
 <script>
     window.addEventListener('DOMContentLoaded', () => {
         const fecha = document.getElementById('fecha');
