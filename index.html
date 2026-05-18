@@ -14,6 +14,31 @@
             color: #000;
         }
 
+        /* --- ESTILOS PARA IMPRESIÓN EN PDF TAMAÑO CARTA --- */
+        @media print {
+            @page {
+                size: Letter portrait;
+                margin: 0;
+            }
+            html, body {
+                width: 215.9mm;
+                height: 279.4mm;
+                margin: 0;
+                padding: 0;
+                background: white !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            #contenedor-acta {
+                box-shadow: none !important;
+                margin: 0 !important;
+                page-break-after: avoid;
+                page-break-before: avoid;
+                page-break-inside: avoid;
+            }
+        }
+
         .no-print { 
             background: #333; 
             padding: 10px; 
@@ -43,6 +68,9 @@
             opacity: 0.16;
             pointer-events: none;
             z-index: 0;
+            /* Forzar CORS para html2canvas */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .contenido-acta {
@@ -258,15 +286,37 @@
     }
 
     function descargarPDF() {
-        const elemento = document.getElementById('contenedor-acta');
+        // Oculta los elementos no imprimibles temporalmente
+        const noPrint = document.querySelectorAll('.no-print');
+        noPrint.forEach(el => el.style.display = 'none');
+
+        // Elimina temporalmente la marca de agua para evitar errores si la imagen falla
+        const acta = document.getElementById('contenedor-acta');
+        const originalBefore = acta.style.getPropertyValue('--marca-agua') || '';
+        const beforeStyle = acta.querySelector('style[data-marca-agua]');
+        // Elimina la marca de agua (background-image) temporalmente
+        acta.style.backgroundImage = 'none';
+
         const configuracion = {
-            margin: 10,
+            margin: [0, 0, 0, 0],
             filename: 'ACTA_BOLSAS_TAV.pdf',
             image: { type: 'jpeg', quality: 1 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
+            html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fff', allowTaint: true, logging: true },
+            jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
-        html2pdf().from(elemento).set(configuracion).save();
+        html2pdf().from(acta).set(configuracion).save().then(() => {
+            // Restaura la marca de agua
+            acta.style.backgroundImage = '';
+            noPrint.forEach(el => el.style.display = '');
+        }).catch((err) => {
+            acta.style.backgroundImage = '';
+            noPrint.forEach(el => el.style.display = '');
+            let msg = 'Ocurrió un error al generar el PDF.';
+            if (err && err.message) msg += '\n' + err.message;
+            alert(msg);
+            console.error('Error al generar PDF:', err);
+        });
     }
 
     function limpiarCampos() {
